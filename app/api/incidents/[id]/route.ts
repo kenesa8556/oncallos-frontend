@@ -1,13 +1,21 @@
 import { NextResponse } from "next/server";
-import { incidents } from "../data";
+import { supabase } from "../../../lib/supabase";
 
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params; 
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
-    const id  = params.id;
-    
-    const incident = incidents.find((i) => i.id === id);
-    if (!incident) {
-        return NextResponse.json({ message: "Incident not found" }, { status: 404 });
-    }
-    return NextResponse.json(incident);
+  const { data, error } = await supabase
+    .from('incidents')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error || !data) {
+    return NextResponse.json({ message: "Incident not found" }, { status: 404 });
+  }
+
+  return NextResponse.json(data);
 }

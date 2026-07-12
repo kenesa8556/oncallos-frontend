@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link";
 import { ChangeEvent, useState } from "react";
 interface Incident {
   id: string;
@@ -43,6 +44,7 @@ function IncidentFilter({incidents}: IncidentFilterProps) {
                 <div key={inc.id}>
                   <h1>{inc.title}</h1>
                   <h1>{inc.severity}</h1>
+                  <Link href={`/incidents/${inc.id}`}>View Details</Link>
                 </div>
               );
             })

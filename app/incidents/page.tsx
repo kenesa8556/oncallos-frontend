@@ -7,12 +7,16 @@ interface Incident {
 }
 
 async function getIncidents(): Promise<Incident[]> {
-  return [
-    { id: '1', title: 'Server down', severity: 'high' },
-    { id: '2', title: 'Slow response times', severity: 'medium' },
-    { id: '3', title: 'Minor UI bug', severity: 'low' },
-  ];
+  const response = await fetch("http://localhost:3000/api/incidents");
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch incidents");
+  }
+  const data = await response.json();
+
+  return data;
 }
+
 
 
   async function IncidentsPage() {

@@ -1,20 +1,36 @@
 import { NextResponse } from "next/server";
-import { Incident, incidents } from "./data";
+import { Incident } from "./data";
+import { supabase } from "../../lib/supabase";
 
 
 
 export async function GET(){
     
-    return NextResponse.json(incidents);
+    const { data, error } = await supabase.from('incidents').select('*');
+
+  if (error) {
+    return NextResponse.json({ message: error.message }, { status: 500 });
+  }
+
+  return NextResponse.json(data);
 }
 
 
 export async function POST(request: Request) {
-    const data : Incident = await request.json();
+    const body: Incident = await request.json();
 
-    if (!data.title) {
+    if (!body.title) {
         return NextResponse.json({ message: "Title is required" }, { status: 400 });
     }
 
-    return NextResponse.json({ message: "Incident created successfully", data });
+    const { data, error } = await supabase
+        .from('incidents')
+        .insert({ title: body.title, severity: body.severity })
+        .select();
+
+    if (error) {
+        return NextResponse.json({ message: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ message: "Incident created successfully", data }, { status: 201 });
 }
