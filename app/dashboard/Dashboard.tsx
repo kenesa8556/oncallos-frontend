@@ -38,17 +38,20 @@ const fetchIncidents = async () => {
 
     return (
         <div>
-            <button onClick={fetchIncidents}>Refresh</button>
-            {isLoading && <p>Loading...</p>}
-            {err && <p>Error: {err}</p>}
+            <button onClick={fetchIncidents} className="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-lg mb-4">Refresh</button>
+            {isLoading && <p className="text-white">Loading...</p>}
+            {err && <p className="text-red-400">Error: {err}</p>}
             {incidents && (
                 <div>
-                    <h2>Incidents</h2>
+                    <h2 className="text-white text-xl font-bold mb-4">Incidents</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
                     {incidents.map((incident) => (
-                        <div key={incident.id}>
-                            <h3>{incident.title}</h3>
+                        <div key={incident.id} className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                            <h3 className="text-white">{incident.title}</h3>
                         </div>
                     ))}
+                    </div>
                 </div>
             )}
         </div>
