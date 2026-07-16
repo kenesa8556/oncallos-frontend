@@ -38,7 +38,7 @@ const fetchIncidents = async () => {
 
     return (
         <div>
-            <button onClick={fetchIncidents} className="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-lg mb-4">Refresh</button>
+            <button onClick={fetchIncidents} className="btn-primary mt-2">Refresh</button>
             {isLoading && <p className="text-white">Loading...</p>}
             {err && <p className="text-red-400">Error: {err}</p>}
             {incidents && (

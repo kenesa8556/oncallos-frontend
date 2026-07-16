@@ -5,3 +5,7 @@
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+.btn-primary {
+  @apply bg-brand hover:bg-green-500 text-white px-4 py-2 rounded-lg transition-colors duration-300;
+}

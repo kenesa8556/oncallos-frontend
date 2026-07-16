@@ -11,7 +11,7 @@ export default function Home() {
             <span className="text-sm text-gray-300">All systems operational</span>
           </div>
           <Link href="/dashboard">   
-               <button className="bg-green-600 hover:bg-green-500 text-white font-semibold px-6 py-3 rounded-lg shadow-lg mt-8 transition-colors"> View Dashboard</button>
+               <button className="btn-primary mt-8"> View Dashboard</button>
           </Link>
           
     </div>
