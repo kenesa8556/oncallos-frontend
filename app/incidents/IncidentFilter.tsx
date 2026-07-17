@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
-import Card from "../components/Card"
-import Badge from "../components/Badge"
-import Button from "../components/Button"
+import IncidentCard from "../components/IncidentCard"
+
 interface Incident {
   id: string;
   title: string;
@@ -45,14 +44,7 @@ function IncidentFilter({incidents}: IncidentFilterProps) {
 
             filteredIncidents.map((inc) => {
               return (
-                <Card key={inc.id} > 
-                        
-                            <h3 className="text-white font-semibold mb-2">{inc.title}</h3>
-                            <Link href={`/incidents/${inc.id}`} className="m-3 p-3">
-                              <Button variant="primary"> View Detail  </Button>
-                            </Link>
-                            <Badge severity={inc.severity}> {inc.severity}</Badge>
-                </Card>
+                <IncidentCard key={inc.id} showDetailLink={true} incident={inc}/>
               );
             })
           }

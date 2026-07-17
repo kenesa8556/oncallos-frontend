@@ -1,11 +1,9 @@
 "use client"
-
+import IncidentCard from "../components/IncidentCard"
 import { Incident } from "../api/incidents/data";
 
 import { useEffect, useState } from "react";
 import Button from "../components/Button"
-import Card from "../components/Card"
-import Badge from "../components/Badge"
 
 
 
@@ -51,11 +49,7 @@ const fetchIncidents = async () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
                     {incidents.map((incident) => (
-                        <Card key={incident.id}> 
-                        
-                            <h3 className="text-white font-semibold mb-2">{incident.title}</h3>
-                            <Badge severity={incident.severity}> {incident.severity}</Badge>
-                        </Card>
+                        <IncidentCard key={incident.id} showDetailLink={false} incident={incident} />
                     ))}
                     </div>
                 </div>
