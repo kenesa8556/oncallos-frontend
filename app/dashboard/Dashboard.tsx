@@ -3,6 +3,10 @@
 import { Incident } from "../api/incidents/data";
 
 import { useEffect, useState } from "react";
+import Button from "../components/Button"
+import Card from "../components/Card"
+import Badge from "../components/Badge"
+
 
 
 function Dashboard() {
@@ -38,7 +42,7 @@ const fetchIncidents = async () => {
 
     return (
         <div>
-            <button onClick={fetchIncidents} className="btn-primary mt-2">Refresh</button>
+            <Button onClick={fetchIncidents} variant="secondary">Refresh</Button>
             {isLoading && <p className="text-white">Loading...</p>}
             {err && <p className="text-red-400">Error: {err}</p>}
             {incidents && (
@@ -47,9 +51,11 @@ const fetchIncidents = async () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
                     {incidents.map((incident) => (
-                        <div key={incident.id} className="bg-gray-800 rounded-lg p-4 border border-gray-700">
-                            <h3 className="text-white">{incident.title}</h3>
-                        </div>
+                        <Card key={incident.id}> 
+                        
+                            <h3 className="text-white font-semibold mb-2">{incident.title}</h3>
+                            <Badge severity={incident.severity}> {incident.severity}</Badge>
+                        </Card>
                     ))}
                     </div>
                 </div>

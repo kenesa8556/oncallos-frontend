@@ -1,4 +1,5 @@
 import  Link  from 'next/link'
+import Button from "./components/Button"
 export default function Home() {
   return (
     <>
@@ -11,7 +12,7 @@ export default function Home() {
             <span className="text-sm text-gray-300">All systems operational</span>
           </div>
           <Link href="/dashboard">   
-               <button className="btn-primary mt-8"> View Dashboard</button>
+               <Button variant="primary"> View Dashboard</Button>
           </Link>
           
     </div>
