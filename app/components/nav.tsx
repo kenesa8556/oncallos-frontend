@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle"
+import AuthStatus from "./AuthStatus"
 
 export function Nav() {
   return (
@@ -9,6 +10,8 @@ export function Nav() {
         <Link href="/dashboard" className="text-gray-900 dark:text-white hover:text-brand transition-colors duration-300">Dashboard</Link>
         <Link href="/incidents" className="text-gray-900 dark:text-white hover:text-brand transition-colors duration-300">Incidents</Link>
         <ThemeToggle />
+
+        <AuthStatus/>
     </nav>  
   );
 };

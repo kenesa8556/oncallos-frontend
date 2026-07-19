@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import StoreProvider from "@/app/StoreProvider"
 import { Nav } from "./components/nav";
 
 
@@ -20,10 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen bg-slate-900 ">
-        <Nav /> 
-        
-        {children}
-        
+        <StoreProvider>
+
+          <Nav /> 
+          
+          {children}
+          
+        </StoreProvider>
       </body>
     </html>
   );
